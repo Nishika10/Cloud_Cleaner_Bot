@@ -95,10 +95,41 @@ check_unused_eips() {
   fi
 }
 
+# Function to check and delete old EBS snapshots
+check_unused_snapshots() {
+  echo ""
+  echo " Checking available EBS snapshots..."
+  snapshots=$(aws ec2 describe-snapshots \
+    --owner-ids self \
+    --query "Snapshots[*].SnapshotId" \
+    --output text)
+
+  if [ "$snapshots" != "" ]; then
+    echo " Snapshots Found:"
+    echo "$snapshots"
+
+    echo -n " Do you want to delete all these snapshots? (y/n): "
+    read delete_snapshots
+
+    if [ "$delete_snapshots" == "y" ]; then
+      for snapshot_id in $snapshots; do
+        echo " Deleting snapshot: $snapshot_id"
+        aws ec2 delete-snapshot --snapshot-id "$snapshot_id"
+      done
+      echo " All snapshots deleted!"
+    else
+      echo "   These snapshots may incur storage costs!"
+    fi
+  else
+    echo " No snapshots found."
+  fi
+}
+
 # Calling the functions
 check_stopped_ec2
 check_unattached_ebs
 check_unused_eips
+check_unused_snapshots
 
 echo ""
 echo " Cleanup complete. Your AWS account is now cleaner!"
