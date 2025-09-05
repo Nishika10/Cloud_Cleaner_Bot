@@ -1,7 +1,7 @@
 
 # ☁️ Cloud Cleaner Bot
 
-A lightweight shell script that automates the cleanup of AWS resources such as stopped EC2 instances, unattached EBS volumes, and unassociated Elastic IPs — helping reduce costs and maintain a clean cloud environment.
+A lightweight shell script that automates the cleanup of AWS resources such as stopped EC2 instances, unattached EBS volumes, EBS snapshots, and unassociated Elastic IPs — helping reduce costs and maintain a clean cloud environment.
 
 
 ## 🚀 Features
@@ -9,6 +9,7 @@ A lightweight shell script that automates the cleanup of AWS resources such as s
 - Deletes **unattached EBS volumes** to free up space.
 - Releases **unused Elastic IPs** to avoid unnecessary charges.
 - Identifies **stopped EC2 instances** to help optimize resource usage.
+- Cleans up **EBS snapshots** to reduce storage costs.
 - Automates cleanup operations via a **bash script** using the AWS CLI.
 
 
@@ -20,7 +21,7 @@ A lightweight shell script that automates the cleanup of AWS resources such as s
 
 ## 🌐 AWS Services Used
 
-- EC2, IAM, Elastic IP, EBS
+- EC2, IAM, Elastic IP, EBS (Volumes and Snapshots)
 
 
 ## 🛠️ Installation
@@ -44,13 +45,13 @@ A lightweight shell script that automates the cleanup of AWS resources such as s
 1. Run the script using the command:
    ```bash
    ./Cloud_Cleaner_Bot.sh
+   
 The script will:
 
 - List and delete unattached EBS volumes.
-
 - Release any unused Elastic IPs.
-
 - Show stopped EC2 instances and ask if you want to delete them.
+- List available EBS snapshots and ask if you want to delete them.
 
 ⚠️ Make sure your IAM user has sufficient permissions to perform these actions.
 ## 📚 Lessons Learned
