@@ -62,6 +62,14 @@ The script will:
 - Understood cost optimization practices in real AWS environments.
 
 - Explored how to make scripts safer with user prompts and validations.
+
+
+## ⚖️ License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
 ## 👩‍💻 Author
 Nishika Jaiswal  
 Aspiring Cloud & DevOps Engineer
