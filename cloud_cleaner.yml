@@ -1,0 +1,13 @@
+---
+- name: Run Cloud Cleaner Bot on servers
+  hosts: aws_servers
+  become: true
+
+  tasks:
+    - name: Copy Cloud Cleaner script to server
+      copy: 
+        src: Cloud_Cleaner_Bot.sh
+        dest: /home/ubuntu/Cloud_Cleaner_Bot.sh
+        mode: '0755'
+    - name: Run Cloud Cleaner script
+      command: /home/ubuntu/Cloud_Cleaner_Bot.sh
